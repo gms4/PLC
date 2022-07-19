@@ -104,3 +104,5 @@ fatMsg :: Int -> String
 fatMsg n
   | n < 0 = "Erro: argumento negativo"
   | n >= 0 = "O resultado eh: " ++ show (fat3 n)
+
+  
