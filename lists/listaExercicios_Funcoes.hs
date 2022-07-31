@@ -65,6 +65,10 @@ cBinomial a b | (a==0) && (b>0) = 0
               | otherwise       = cBinomial (a-1) b + cBinomial (a-1) (b-1)
 
 --Q11: Tribonacci
+-- tribonacci :: Int -> Int
+-- tribonacci x | (x == 1) || (x == 2)       = 1
+--              | (x == 3)                   = 2
+--              | otherwise                  = tribona
 
 --Q12
 addEspacos :: Int -> String
