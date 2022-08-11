@@ -89,7 +89,7 @@ filtroLista f (x:xs)
 ehDigito :: Char -> Bool
 ehDigito ch = ch >= '0' && ch <= '9'
 
-filtoDefCompLista ::  (t -> Bool) -> [t] -> [t]
+filtroDefCompLista ::  (t -> Bool) -> [t] -> [t]
 filtroDefCompLista f l =  [ x |  x <- l, f x  ]
 
 {-

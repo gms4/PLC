@@ -80,10 +80,10 @@ ghci> areaFigura (Circulo 7)
 
 -}
 
-data Ponto      = Ponto Float Float deriving (Show, Eq)
-data figPlao    = Circ Ponto Float 
-                    | Retang Ponto Ponto
-                        deriving (Show, Eq)
+data Ponto           = Ponto Float Float deriving (Show, Eq)
+data FigPlano        = Circ Ponto Float 
+                         | Retang Ponto Ponto
+                             deriving (Show, Eq)
 
 --areaSuperficie :: Fig -> Float
 
@@ -107,7 +107,20 @@ ghci> map (Retangulo 10) [1..5]
              | Add Expr Expr
              | Sub Expr Expr -} 
 
-exp1 = Lit 1
-exp2 = Add (Lit1) (Add (Lit 2) Lit (3))
-exp3 = Sub (Add (Lit 6) (Lit 8)) (Add (Sub (Lit4) (Lit 2)) (Lit 1))
+-- exp1 = Lit 1
+-- exp2 = Add (Lit1) (Add (Lit 2) Lit (3))
+-- exp3 = Sub (Add (Lit 6) (Lit 8)) (Add (Sub (Lit4) (Lit 2)) (Lit 1))
 
+-- raízes de uma equação --
+-- ax2 + bx + c = 0.0
+-- x = (-b +- sqrt(b2-4ac))/2a
+
+oneRoot :: Float -> Float -> Float -> Float
+oneRoot a b c = -b/(2.0*a)
+
+twoRoots :: Float -> Float -> Float -> (Float, Float)
+twoRoots a b c = (d-e, d+e)
+            where d = -b/(2.0*a)
+                  e = sqrt(b*b - 4.0*a*c)/(2.0*a)
+
+-- roots :: Float -> Float -> Float -> (Int, Float, Float)
