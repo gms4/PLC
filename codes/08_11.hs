@@ -104,8 +104,10 @@ listaParaLPadrao :: Lista t -> [t]
 listaParaLPadrao NilL               = []
 listaParaLPadrao (Cons x lista)     = x : listaParaLPadrao lista
 
-{- *Main> listaParaLPadrao l2
-    [2,3,4,5] -}
+{- 
+*Main> listaParaLPadrao l2
+[2,3,4,5] 
+-}
 
 data MMaybe a = MNothing | MJust a
                 deriving (Show)
@@ -113,14 +115,17 @@ data MMaybe a = MNothing | MJust a
 mDiv :: Int -> Int -> Int
 mDiv x y = div x y 
 
-{- *Main> mDiv 4 0
-*** Exception: divide by zero -}
+{- 
+*Main> mDiv 4 0
+*** Exception: divide by zero 
+-}
 
 safeDiv :: Int -> Int -> MMaybe Int
 safeDiv x 0         = MNothing
 safeDiv x y         = MJust (div x y)
 
-{- *Main> safeDiv 4 0
+{- 
+*Main> safeDiv 4 0
 MNothing
 *Main> safeDiv 4 2
 MJust 2
@@ -130,3 +135,11 @@ novaDiv :: Int -> Int -> String
 novaDiv x y = case (safeDiv x y) of
                 MNothing -> "Divisao por zero"
                 MJust z  -> "A divisao de " ++ show x ++ " por " ++ show y ++ " resulta em " ++ show z
+
+{- 
+*Main> novaDiv 4 0
+"Divisao por zero"
+*Main> novaDiv 4 2
+"A divisao de 4 por 2 resulta em 2"
+-}
+
