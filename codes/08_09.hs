@@ -20,7 +20,7 @@ clima   _       = Quente
 
 -- PRODUTO CARTESIANO --
 
-type Nome2 = String 
+type Nome2 = String
 type Idade = Int
 
 data Pessoas = Pessoa Nome2 Idade
@@ -81,7 +81,7 @@ ghci> areaFigura (Circulo 7)
 -}
 
 data Ponto           = Ponto Float Float deriving (Show, Eq)
-data FigPlano        = Circ Ponto Float 
+data FigPlano        = Circ Ponto Float
                          | Retang Ponto Ponto
                              deriving (Show, Eq)
 
@@ -100,6 +100,7 @@ ghci> map (Retangulo 10) [1..5]
 
 -}
 
+-- AULAS DE CASTOR --
 -- raízes de uma equação --
 -- ax2 + bx + c = 0.0
 -- x = (-b +- sqrt(b2-4ac))/2a
@@ -112,4 +113,35 @@ twoRoots a b c = (d-e, d+e)
             where d = -b/(2.0*a)
                   e = sqrt(b*b - 4.0*a*c)/(2.0*a)
 
--- roots :: Float -> Float -> Float -> (Int, Float, Float)
+roots :: Float -> Float -> Float -> (Int, Float, Float)
+roots a b c | b*b - 4.0*a*c < 0     = (0, 0, 0)
+            | b*b - 4.0*a*c == 0    = (1, (oneRoot a b c), 0)
+            | otherwise             = (2, raiz1, raiz2)
+                where (raiz1, raiz2)= twoRoots a b c
+
+type Pessoa = String
+type Livro = String
+type BancoDados = [(Pessoa, Livro)]
+
+baseExemplo :: BancoDados
+baseExemplo = [("Guilherme", "A Danca dos Dragoes"), ("Larissa", "Os Sete Maridos de Evelyn Hugo"), ("Thais", "O Guia do Mochileiro das Galaxias")]
+
+livros :: BancoDados -> Pessoa -> [Livro]
+livros bd p = [l | (pp, l) <- bd, pp == p]
+
+emprestimos :: BancoDados -> Livro -> [Pessoa]
+emprestimos bd l = [pp | (pp, ll) <- bd, ll == l]
+
+emprestado :: BancoDados -> Livro -> Bool
+emprestado bd l = (emprestimos bd l) /= []
+
+qtdEmprestimos :: BancoDados -> Pessoa -> Int
+qtdEmprestimos bd p = length (livros bd p)
+
+emprestar :: BancoDados -> Pessoa -> Livro -> BancoDados
+emprestar [] pessoa livro = [(pessoa, livro)]
+emprestar ((p,l):as) pessoa livro
+    | p == pessoa && l == livro      = (p, l):as
+    | otherwise                      = (p, l): emprestar as pessoa livro
+
+-- devolver :: BancoDados -> Pessoa -> Livro -> BancoDados
