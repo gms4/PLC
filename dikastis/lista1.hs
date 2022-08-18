@@ -1,4 +1,4 @@
--- A: Elevado à --
+-- A: ELEVADO À --
 {-
 > potencia 2 4
     2 * potencia 2 3
@@ -14,7 +14,7 @@ potencia n k
         | k == 1        = n
 potencia n k = n * potencia n (k-1)
 
--- B: Quantas divisões exatas --
+-- B: QUANTAS DIVISÕES EXATAS --
 -- Integral a => define o tipo de a (integral) --
 -- A função recebe a e a e retorna a --
 {-
@@ -31,7 +31,7 @@ numDiv a b
         | a `mod` b /= 0          = 0
         | otherwise               = 1 + numDiv (a `div` b) b
 
--- C: Quais os únicos? --
+-- C: QUAIS OS ÚNICOS? --
 
 -- Função que retira repetidos dados --
 {-
@@ -77,3 +77,21 @@ unique (a:as)
     7 == 7 -> [4, 5] : unicos (popEqual 7 [7])
     [4, 5]
 -}
+
+-- E: JUNTE AS LISTAS --
+-- fazer merge entre listas já ordenadas --
+-- output é uma lista ordenada --
+merge :: Ord a => [a] -> [a] -> [a]
+merge [] x = x
+merge x [] = x
+merge (x:xs) (y:ys) | y < x         = y : merge (x:xs) ys
+merge (x:xs) (y:ys) | otherwise     = x : merge xs (y:ys)
+
+{-
+> merge [1, 3, 2] [4, 6, 5]
+    4 < 1 FALSE -> [1] : merge [3, 2] [4, 6, 5]
+    4 < 3 FALSE -> [1, 3] : merge [2] [4, 6, 5]
+    4 < 2 FALSE ->  [1, 3, 2] : merge [] [4, 6, 5]
+    merge [] x = x -> 
+-}
+

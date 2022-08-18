@@ -129,3 +129,14 @@ main =
         let s3 = "a"
         r3 <- showStackHead s3
         putStrLn $ "resultado " ++ r3
+
+{-
+*Main> main
+resultado 
+----
+resultado: a
+resultado sdf
+----
+resultado: a
+resultado 
+-}
