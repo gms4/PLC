@@ -82,16 +82,34 @@ unique (a:as)
 -- fazer merge entre listas já ordenadas --
 -- output é uma lista ordenada --
 merge :: Ord a => [a] -> [a] -> [a]
-merge [] x = x
-merge x [] = x
-merge (x:xs) (y:ys) | y < x         = y : merge (x:xs) ys
-merge (x:xs) (y:ys) | otherwise     = x : merge xs (y:ys)
+merge xs [] = xs
+merge [] ys = ys
+merge (x:xs) (y:ys)
+  | x <= y      = x : merge xs (y:ys)
+  | otherwise   = y : merge (x:xs) ys
 
 {-
-> merge [1, 3, 2] [4, 6, 5]
-    4 < 1 FALSE -> [1] : merge [3, 2] [4, 6, 5]
-    4 < 3 FALSE -> [1, 3] : merge [2] [4, 6, 5]
-    4 < 2 FALSE ->  [1, 3, 2] : merge [] [4, 6, 5]
-    merge [] x = x -> 
+*Main>  
+[1,2,4,3,7,9]
+*Main> merge [2, 5, 6] [1, 3, 4]
+[1,2,3,4,5,6]
+*Main> merge [2,5,6] [1,3,4,7,8]
+[1,2,3,4,5,6,7,8]
+*Main> merge [2,5,6,7,8] [1,3,4]
+[1,2,3,4,5,6,7,8]
+*Main> merge [2,9,10] [1,3,4,7,8]
+[1,2,3,4,7,8,9,10]
+-}
+
+{-
+merge [1, 3, 4] [2, 7, 9]
+    1 <= 2 TRUE -> [1] : merge [3, 4] [2, 7, 9]
+    4 <= 2 FALSE -> [1] : [2] : merge [3, 4] [7, 9]
+    3 <= 7 TRUE -> [1, 2] : [3] : merge [4] [7, 9]
+    4 <= 7 TRUE -> [1, 2, 3] : [4] merge [] [7, 9]
+    merge [] ys = ys = [9]
+    9 <= 7 FALSE -> [1, 2, 3, 4] : [7]: merge [9] [9]
+    9 <= 9 TRUE -> [1, 2, 3, 4, 7] : [9] : merge [] [9]
+    [1, 2, 3, 4, 7, 9] 
 -}
 
