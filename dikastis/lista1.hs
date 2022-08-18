@@ -113,3 +113,32 @@ merge [1, 3, 4] [2, 7, 9]
     [1, 2, 3, 4, 7, 9] 
 -}
 
+-- G: SORT & MERGE --
+-- Recebe uma lista e retorna a mesma lista, mas ordenada --
+halve :: [a] -> ([a],[a])
+halve xs = (take half xs, drop half xs)
+    where half = length xs `div` 2
+
+{-
+*Main> halve [1,2,3,4,5,6]
+([1,2,3],[4,5,6])
+halve [1,2,3,4,5,6,7]
+([1,2,3],[4,5,6,7])
+-}
+
+msort :: Ord a => [a] -> [a]
+msort [] = []
+msort [x] = [x]
+msort xs = merge (msort (fst halves)) (msort (snd halves))
+    where halves = halve xs
+
+{-
+*Main> msort [3,1,5,2,5]
+[1,2,3,5,5]
+*Main> msort [3,1,5,2]
+[1,2,3,5]
+-}
+
+-- D: REMOVA E DIVIDA --
+
+-- F: DIVIDA AS LISTAS --
