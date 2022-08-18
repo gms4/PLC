@@ -141,4 +141,6 @@ instance (Visible t, Visible u) => Visible (t, u) where
 "13"
 *Main Data.List> size (1::Int, 3::Int)
 2
+*Main Data.List> size ([1::Int, 2::Int], [3::Int])
+3
 -}

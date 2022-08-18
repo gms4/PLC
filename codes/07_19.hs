@@ -36,7 +36,6 @@ nomeIdade (n, i, nT) = n ++ " tem " ++ show i ++ " de idade"
 
 -- Listas
 
-
 -- Compreensao de listas
 -- {xˆ2 | x e N}
 -- [ expressao | x <- listaGeradora ]
