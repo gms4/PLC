@@ -1,3 +1,5 @@
+-- DISCLAIMER: falta o MAIN de cada questão --
+
 -- A: ELEVADO À --
 {-
 Defina a função potencia, de modo que potencia n k calcula N elevado a K. Sem recorrer a funções pré-definidas.
