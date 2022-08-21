@@ -174,6 +174,7 @@ halve [1,2,3,4,5,6,7]
 ([1,2,3],[4,5,6,7])
 -}
 
+-- Aqui a gente tá reaproveitando a função de merge feita lá em cima --
 msort :: Ord a => [a] -> [a]
 msort [] = []
 msort [x] = [x]
@@ -199,6 +200,15 @@ main = do
   n <- readLn
   x <- getLine
   print $ remDiv (n :: Int) (words x)
+-}
+remDiv :: Int -> [a] -> ([a], [a])
+remDiv itens lista = (take (itens-1) lista, drop itens lista)
+
+{-
+> remDiv 3 [1, 2, 3, 4, 5]
+    - take (itens-1) lista = pegar até o item 2 da lista pra trás: (1, 2)
+    - drop itens lista = dropar do item 3 pra trás: (4, 5)
+    - output: ([1, 2], [4, 5])
 -}
 
 
