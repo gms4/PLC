@@ -1,0 +1,37 @@
+-- PROCESSOS/CONCORRÊNCIA --
+
+- Processos são programas em execução, que possuem seu próprio espaço de endereçamento;
+- Processos competem por tempo de CPU (um exemplo é o gerenciamento de tarefas);
+- Thread são "processos leves", que usam espaço de endereçamento compartilhado;
+- Sendo mais leves, possuem comunicação mais rápida e rola trocas de contexto auxiliadas por hardware;
+- Consequentemente, ocupam menos memória e possuem criação e terminação mais rápidas;
+
+-- EM JAVA --
+
+- extensão da classe Thread ou implementação da interface Runnable;
+- public void run() define o trabalho que será feito em uma thread separada;
+- a nova thread é iniciada por start()
+
+--EXEMPLO 1--
+public class HelloThread extends Thread {
+
+    public void run() {
+        System.out.println("Hi from a thread.");
+    }
+
+    public static void main (String args[]) {
+        (new HelloThread()).start();
+    }
+}
+
+--EXEMPLO 2--
+public class HelloRunnable implements Runnable {
+
+    public void run() {
+        System.out.println("Hi from a thread.");
+    }
+
+    public static void main (String args[]) {
+        (new Thread(new HelloRunnable())).start();
+    }
+}
