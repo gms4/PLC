@@ -38,7 +38,8 @@ main = do
    print (numDiv (a :: Int) (b :: Int))
 -}
 -- Integral a => define o tipo de a (integral) --
--- A função recebe a e a e retorna a --
+-- A função recebe "a" e "a" e retorna "a", todos do mesmo tipo --
+-- Enquanto numa definição normal de função (Int -> String -> Int), não existe dependência entre as variáveis --
 {-
 > numDiv 8 2
     1 + numDiv (8/2) 2 = 1 + numDiv 4 2
@@ -96,7 +97,7 @@ isEqual (a:as) b
 unique :: [Int] -> [Int]
 unique [] = []
 unique (a:as)
-        | isEqual as a      = unique (popEqual a as) -- as cauda na vdd é uma lista, por isso coloquei isEqual as a
+        | isEqual as a      = unique (popEqual a as) -- usando as (que é cauda) pq na vdd é uma lista, por isso coloquei isEqual as a
         | otherwise         = a : unique as
 
 
@@ -104,7 +105,7 @@ unique (a:as)
 > unique [4, 5, 7, 7]
     5 /= 4 -> [4] : unique [5, 7, 7]
     7 /= 5 -> [4] : [5] : unique [7, 7]
-    7 == 7 -> [4, 5] : unicos (popEqual 7 [7])
+    7 == 7 -> [4, 5] : unique (popEqual 7 [7])
     [4, 5]
 -}
 
@@ -118,7 +119,7 @@ main = do
   y <- getLine
   print $ merge (map (read :: String -> Int) (words x)) (map (read :: String -> Int) (words y))
 -}
--- fazer merge entre listas já ordenadas --
+-- fazer merge entre listas já ordenadas (não vai funcionar pra input de listas não ordenadas) --
 -- output é uma lista ordenada --
 merge :: Ord a => [a] -> [a] -> [a]
 merge xs [] = xs
@@ -143,11 +144,11 @@ merge (x:xs) (y:ys)
 {-
 merge [1, 3, 4] [2, 7, 9]
     1 <= 2 TRUE -> [1] : merge [3, 4] [2, 7, 9]
-    4 <= 2 FALSE -> [1] : [2] : merge [3, 4] [7, 9]
+    3 <= 2 FALSE -> [1] : [2] : merge [3, 4] [7, 9]
     3 <= 7 TRUE -> [1, 2] : [3] : merge [4] [7, 9]
     4 <= 7 TRUE -> [1, 2, 3] : [4] merge [] [7, 9]
-    merge [] ys = ys = [9]
-    9 <= 7 FALSE -> [1, 2, 3, 4] : [7]: merge [9] [9]
+    merge [] ys = ys = [9] -> [9] [7, 9]
+    9 <= 7 FALSE -> [1, 2, 3, 4] : [7] : merge [9] [9]
     9 <= 9 TRUE -> [1, 2, 3, 4, 7] : [9] : merge [] [9]
     [1, 2, 3, 4, 7, 9] 
 -}
@@ -162,6 +163,8 @@ main = do
   print $ msort (map (read :: String -> Int) (words x))
 -}
 -- Recebe uma lista e retorna a mesma lista, mas ordenada --
+-- Podemos fazer como um mergesort -> dividir, ordenar e juntar --
+-- Essa função aqui vai ordenar até listas não ordenadas --
 -- Função que divide a lista no meio --
 halve :: [a] -> ([a],[a])
 halve xs = (take half xs, drop half xs)
@@ -175,6 +178,7 @@ halve [1,2,3,4,5,6,7]
 -}
 
 -- Aqui a gente tá reaproveitando a função de merge feita lá em cima --
+-- fst = primeiro item da tupla, snd = segundo item da tupla --5]
 msort :: Ord a => [a] -> [a]
 msort [] = []
 msort [x] = [x]
