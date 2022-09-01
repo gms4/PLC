@@ -25,7 +25,7 @@ maxThree a b c | a > b && a > c  = a
 
 maxFour1 :: Integer -> Integer -> Integer -> Integer -> Integer
 maxFour1 a b c x | maxABC > x  = maxABC
-                | otherwise   = x
+                 | otherwise   = x
                 where maxABC = maxThree a b c
 
 maxFour2 :: Integer -> Integer -> Integer -> Integer -> Integer

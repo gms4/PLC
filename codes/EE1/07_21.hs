@@ -67,4 +67,5 @@ somaLista [1,2,3]
 = 1 + 2 + somaLista [3]
 = 1 + 2 + 3 + somaLista []
 = 1 + 2 + 3 + 0
+= 6
 -}

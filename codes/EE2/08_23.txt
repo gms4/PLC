@@ -1,7 +1,5 @@
 ----- ORIENTAÇÃO A OBJETO -----
 
-{-
-
 Objeto é um agrupamento dos dados e operações que representam um conceito
 - Conta bancária tem número, saldo e as ações creditar e debitar;
 - Aluno da UFPE no sig@ tem nome, cpf, endereço e ações corrigir nome, atualizar endereço;
@@ -67,6 +65,3 @@ Public class Conta {
 
 -- HERANÇA --
 -- desisto --
-
-
--}
