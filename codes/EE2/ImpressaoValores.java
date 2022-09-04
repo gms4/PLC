@@ -13,9 +13,9 @@ class ImpressaoValores extends Thread {
 
     public void run() {
         int i;
-        int contador = 0;
+        //int contador = 0;
         for (i = inf; i < sup; i++) {
-            // contador = i;
+            //contador = i;
             System.out.println("Thread: " + this.id + " - Valor: " + i);
         }
     }

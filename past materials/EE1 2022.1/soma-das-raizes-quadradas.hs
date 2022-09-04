@@ -17,4 +17,9 @@ somaSqrt2 lista = foldr (+) 0 listaSqrt
   where listaFiltrada = filter (>0) lista
         listaSqrt     = map sqrt listaFiltrada
 
+-- belinha --
+somaSqrt3 :: Floating a => Ord a => [a] -> a 
+somaSqrt3 [] = 0
+somaSqrt3 l = foldr (+) 0 (map sqrt (filter (>0) l))
+
 
