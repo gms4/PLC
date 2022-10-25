@@ -15,9 +15,9 @@ main = do
     i <- atomically (newTVar 0)
     ctrl <- newMVar True
 
-    forkIO $ contador "contador 1" i 1000 ctrl
-    forkIO $ contador "contador 2" i 1000 ctrl
-    forkIO $ contador "contador 3" i 1000 ctrl
+    forkIO $ contador "contador 1" i 1000 ctrl -- refrigerante 1
+    forkIO $ contador "contador 2" i 1000 ctrl -- refrigerante 2
+    forkIO $ contador "contador 3" i 1000 ctrl -- refrigerante 3
     forkIO $ contador "contador 4" i 1000 ctrl
 
 contador :: String -> TVar Int -> Int -> MVar Bool -> IO()
@@ -34,3 +34,4 @@ contador nome i x ctrl = loop
                     loop
                 else
                     return()
+                    
